@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)https://one14514228922.onrender.com/ -->
+<html lang="zh-Hant"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>測試-10</title>
+
+  <!-- 防止社群平台顯示預覽圖 -->
+  <meta property="og:image" content="none">
+  <meta property="og:title" content=" ">
+  <meta property="og:description" content=" ">
+  <meta name="twitter:card" content="summary">
+
+  <style>
+    body {
+      margin: 0;
+      background: url('1.jpg') center center / cover no-repeat;
+      color: #f0f0f0;
+      text-align: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+      padding: 40px 20px;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 40px;
+      text-shadow: 2px 2px 5px #0008;
+    }
+    
+    /* 響應式設計 - 平板電腦 */
+    @media (max-width: 768px) {
+      body {
+        padding: 30px 15px;
+      }
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+      }
+      h1 img {
+        height: 2.5rem !important;
+        margin-left: 10px !important;
+      }
+      button {
+        padding: 0.8em 1.5em !important;
+        margin: 10px 15px !important;
+      }
+      #step1 p, #step3 p {
+        font-size: 1.4rem !important;
+      }
+      #analysis {
+        font-size: 1.8rem !important;
+      }
+    }
+    
+    /* 響應式設計 - 手機 */
+    @media (max-width: 480px) {
+      body {
+        padding: 20px 10px;
+      }
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+      h1 img {
+        height: 2rem !important;
+        margin-left: 8px !important;
+        border-radius: 16px !important;
+      }
+      button {
+        padding: 0.7em 1.2em !important;
+        margin: 8px 10px !important;
+        font-size: 0.9rem !important;
+      }
+      #step1 p, #step3 p {
+        font-size: 1.2rem !important;
+        margin-bottom: 20px !important;
+      }
+      #analysis {
+        font-size: 1.5rem !important;
+        margin-bottom: 20px !important;
+      }
+      #loadingScreen p {
+        font-size: 1.4rem !important;
+        margin-bottom: 20px !important;
+      }
+      .slider {
+        margin: 0 8px !important;
+        height: 60px !important;
+        width: 15px !important;
+      }
+    }
+    
+    /* 響應式設計 - 超小螢幕 */
+    @media (max-width: 320px) {
+      body {
+        padding: 15px 8px;
+      }
+      h1 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+      }
+      h1 img {
+        height: 1.5rem !important;
+        margin-left: 5px !important;
+        border-radius: 12px !important;
+      }
+      button {
+        padding: 0.6em 1em !important;
+        margin: 5px 8px !important;
+        font-size: 0.8rem !important;
+      }
+      #step1 p, #step3 p {
+        font-size: 1rem !important;
+        margin-bottom: 15px !important;
+      }
+      #analysis {
+        font-size: 1.2rem !important;
+        margin-bottom: 15px !important;
+      }
+    }
+    button {
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      color: white;
+      background-color: #171717;
+      padding: 1em 2em;
+      border: none;
+      border-radius: .6rem;
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      margin: 15px 20px;
+    }
+
+    button span:not(:nth-child(6)) {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      height: 30px;
+      width: 30px;
+      background-color: #0c66ed;
+      border-radius: 50%;
+      transition: .6s ease;
+    }
+
+    button span:nth-child(6) {
+      position: relative;
+    }
+
+    button span:nth-child(1) {
+      transform: translate(-3.3em, -4em);
+    }
+
+    button span:nth-child(2) {
+      transform: translate(-6em, 1.3em);
+    }
+
+    button span:nth-child(3) {
+      transform: translate(-.2em, 1.8em);
+    }
+
+    button span:nth-child(4) {
+      transform: translate(3.5em, 1.4em);
+    }
+
+    button span:nth-child(5) {
+      transform: translate(3.5em, -3.8em);
+    }
+
+    button:hover span:not(:nth-child(6)) {
+      transform: translate(-50%, -50%) scale(4);
+      transition: 1.5s ease;
+    }
+    
+    /* From Uiverse.io by Nawsome */ 
+    .loader {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+    }
+
+    .slider {
+      overflow: hidden;
+      background-color: white;
+      margin: 0 15px;
+      height: 80px;
+      width: 20px;
+      border-radius: 30px;
+      box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.1), -15px -15px 30px #fff,
+        inset -5px -5px 10px rgba(0, 0, 255, 0.1),
+        inset 5px 5px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .slider::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 20px;
+      width: 20px;
+      border-radius: 100%;
+      box-shadow: inset 0px 0px 0px rgba(0, 0, 0, 0.3), 0px 420px 0 400px #2697f3,
+        inset 0px 0px 0px rgba(0, 0, 0, 0.1);
+      animation: animate_2 2.5s ease-in-out infinite;
+      animation-delay: calc(-0.5s * var(--i));
+    }
+
+    @keyframes animate_2 {
+      0% {
+        transform: translateY(250px);
+        filter: hue-rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(250px);
+        filter: hue-rotate(180deg);
+      }
+    }
+    
+    #analysis {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      text-shadow: 1.5px 1.5px 3px #000a;
+    }
+    #step1 p, #step3 p {
+      font-size: 1.6rem;
+      margin-bottom: 30px;
+      font-weight: 600;
+      text-shadow: 1px 1px 3px #0008;
+    }
+    #jumpscare {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      display: none;
+      z-index: 9999;
+      animation: shake 0.1s infinite;
+    }
+    @keyframes shake {
+      0% { transform: translate(1px, 1px); }
+      25% { transform: translate(-2px, 3px); }
+      50% { transform: translate(2px, -1px); }
+      75% { transform: translate(-1px, -2px); }
+      100% { transform: translate(1px, 2px); }
+    }
+    
+    /* 煙火特效 */
+    .firework {
+      position: fixed;
+      pointer-events: none;
+      z-index: 10000;
+    }
+    
+    .firework-particle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      animation: firework-explosion 1s ease-out forwards;
+    }
+    
+    @keyframes firework-explosion {
+      0% {
+        opacity: 1;
+        transform: scale(0) translate(0, 0);
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1) translate(var(--dx), var(--dy));
+      }
+    }
+    
+    .firework-particle:nth-child(1) { background: #ff6b6b; --dx: 30px; --dy: -30px; }
+    .firework-particle:nth-child(2) { background: #4ecdc4; --dx: -30px; --dy: -30px; }
+    .firework-particle:nth-child(3) { background: #45b7d1; --dx: 30px; --dy: 30px; }
+    .firework-particle:nth-child(4) { background: #96ceb4; --dx: -30px; --dy: 30px; }
+    .firework-particle:nth-child(5) { background: #ffeaa7; --dx: 0px; --dy: -40px; }
+    .firework-particle:nth-child(6) { background: #dda0dd; --dx: 0px; --dy: 40px; }
+    .firework-particle:nth-child(7) { background: #98d8c8; --dx: 40px; --dy: 0px; }
+    .firework-particle:nth-child(8) { background: #f7dc6f; --dx: -40px; --dy: 0px; }
+    .firework-particle:nth-child(9) { background: #bb8fce; --dx: 25px; --dy: -25px; }
+    .firework-particle:nth-child(10) { background: #85c1e9; --dx: -25px; --dy: 25px; }
+    .firework-particle:nth-child(11) { background: #ff9ff3; --dx: 35px; --dy: -15px; }
+    .firework-particle:nth-child(12) { background: #54a0ff; --dx: -35px; --dy: -15px; }
+    .firework-particle:nth-child(13) { background: #5f27cd; --dx: 15px; --dy: -35px; }
+    .firework-particle:nth-child(14) { background: #00d2d3; --dx: -15px; --dy: -35px; }
+    .firework-particle:nth-child(15) { background: #ff6348; --dx: 45px; --dy: 15px; }
+    .firework-particle:nth-child(16) { background: #2ed573; --dx: -45px; --dy: 15px; }
+    .firework-particle:nth-child(17) { background: #ffa502; --dx: 15px; --dy: 45px; }
+    .firework-particle:nth-child(18) { background: #3742fa; --dx: -15px; --dy: 45px; }
+    .firework-particle:nth-child(19) { background: #f368e0; --dx: 20px; --dy: -40px; }
+    .firework-particle:nth-child(20) { background: #ff3838; --dx: -20px; --dy: -40px; }
+  </style>
+<style type="text/css">#_copy{align-items:center;background:#4494d5;border-radius:3px;color:#fff;cursor:pointer;display:flex;font-size:13px;height:30px;justify-content:center;position:absolute;width:60px;z-index:1000}#select-tooltip,#sfModal,.modal-backdrop,div[id^=reader-helper]{display:none!important}.modal-open{overflow:auto!important}._sf_adjust_body{padding-right:0!important}.enable_copy_btns_div{position:fixed;width:154px;left:10px;top:45%;background:#e7f1ff;border:2px solid #4595d5;font-weight:600;border-radius:2px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;z-index:5000}.enable_copy_btns_logo{width:100%;background:#4595d5;text-align:center;font-size:12px;color:#e7f1ff;line-height:30px;height:30px}.enable_copy_btns_btn{display:block;width:128px;height:28px;background:#7f5711;border-radius:4px;color:#fff;font-size:12px;border:0;outline:0;margin:8px auto;font-weight:700;cursor:pointer;opacity:.9}.enable_copy_btns_btn:hover{opacity:.8}.enable_copy_btns_btn:active{opacity:1}</style></head>
+<body inmaintabuse="1">
+
+<h1>心理測驗/ᐠ .ᆺ. ᐟ\ﾉ <img src="web.jpg" alt="心理測驗圖片" style="height: 3rem; width: auto; vertical-align: middle; margin-left: 15px; border-radius: 32px; box-shadow: 0 8px 16px rgba(0,0,0,0.3);"></h1>
+
+<!-- 第一步：選擇貓或狗 -->
+<div id="step1">
+  <p>你喜歡貓還是狗？</p>
+  <div id="choiceButtons">
+    <!-- From Uiverse.io by KINGFRESS -->
+    <button data-animal="貓">
+      <span class="circle1"></span>
+      <span class="circle2"></span>
+      <span class="circle3"></span>
+      <span class="circle4"></span>
+      <span class="circle5"></span>
+      <span class="text">貓</span>
+    </button>
+    <button data-animal="狗">
+      <span class="circle1"></span>
+      <span class="circle2"></span>
+      <span class="circle3"></span>
+      <span class="circle4"></span>
+      <span class="circle5"></span>
+      <span class="text">狗</span>
+    </button>
+  </div>
+</div>
+
+<!-- 載入畫面 -->
+<div id="loadingScreen" style="display:none;">
+  <p style="font-size: 1.8rem; margin-bottom: 30px; font-weight: 600;">正在分析您的選擇...</p>
+  <!-- From Uiverse.io by Nawsome -->
+  <section class="loader">
+    <div class="slider" style="--i:0"></div>
+    <div class="slider" style="--i:1"></div>
+    <div class="slider" style="--i:2"></div>
+    <div class="slider" style="--i:3"></div>
+    <div class="slider" style="--i:4"></div>
+  </section>
+</div>
+
+<!-- 第二步：顯示解析與滿意度調查 -->
+<div id="step2" style="display:none;">
+  <p id="analysis"></p>
+  <p>你滿意這個解析嗎？</p>
+  <div id="satisfactionButtons">
+    <!-- From Uiverse.io by KINGFRESS -->
+    <button>
+      <span class="circle1"></span>
+      <span class="circle2"></span>
+      <span class="circle3"></span>
+      <span class="circle4"></span>
+      <span class="circle5"></span>
+      <span class="text">滿意</span>
+    </button>
+    <button>
+      <span class="circle1"></span>
+      <span class="circle2"></span>
+      <span class="circle3"></span>
+      <span class="circle4"></span>
+      <span class="circle5"></span>
+      <span class="text">不滿意</span>
+    </button>
+  </div>
+</div>
+
+<!-- 隱藏的驚嚇圖片 -->
+<img id="jumpscare" src="./測試-10_files/jumpscare.webp" alt="BOO!" style="display:none;width:0;height:0;">
+
+<!-- 驚嚇聲音 -->
+<audio id="scream" src="scream.mp3" preload="auto"></audio>
+
+<script>
+  const step1 = document.getElementById("step1");
+  const step2 = document.getElementById("step2");
+  const loadingScreen = document.getElementById("loadingScreen");
+  const analysis = document.getElementById("analysis");
+  const jumpscare = document.getElementById("jumpscare");
+  const scream = document.getElementById("scream");
+
+  const analysisTexts = {
+    "貓": "你選擇貓，代表你喜歡貓。",
+    "狗": "你選擇狗，代表你喜歡狗。"
+  };
+
+  // 煙火特效函數
+  function createFirework(x, y) {
+    const firework = document.createElement('div');
+    firework.className = 'firework';
+    firework.style.left = x + 'px';
+    firework.style.top = y + 'px';
+    
+    // 創建20個粒子
+    for (let i = 0; i < 20; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'firework-particle';
+      firework.appendChild(particle);
+    }
+    
+    document.body.appendChild(firework);
+    
+    // 1秒後移除煙火元素
+    setTimeout(() => {
+      if (firework.parentNode) {
+        firework.parentNode.removeChild(firework);
+      }
+    }, 1000);
+  }
+
+  // 為按鈕添加煙火特效
+  function addFireworkToButton(button) {
+    button.addEventListener('click', (e) => {
+      const rect = button.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+      createFirework(x, y);
+    });
+  }
+
+  // 第一步：選擇貓或狗
+  document.querySelectorAll("#choiceButtons button").forEach(btn => {
+    addFireworkToButton(btn); // 添加煙火特效
+    
+    btn.addEventListener("click", () => {
+      const animal = btn.getAttribute("data-animal");
+      
+      // 延遲一點讓煙火先播放
+      setTimeout(() => {
+        // 隱藏第一步，顯示載入畫面
+        step1.style.display = "none";
+        loadingScreen.style.display = "block";
+        
+        // 模擬分析時間（2秒後顯示結果）
+        setTimeout(() => {
+          analysis.textContent = analysisTexts[animal];
+          loadingScreen.style.display = "none";
+          step2.style.display = "block";
+        }, 2000);
+      }, 200);
+    });
+  });
+
+  // 第二步：點滿意或不滿意，跳驚嚇
+  document.querySelectorAll("#satisfactionButtons button").forEach(btn => {
+    addFireworkToButton(btn); // 添加煙火特效
+    
+    btn.addEventListener("click", () => {
+      // 延遲一點讓煙火先播放
+      setTimeout(() => {
+        step2.style.display = "none";
+        jumpscare.style.display = "block";
+        jumpscare.style.width = "100vw";
+        jumpscare.style.height = "100vh";
+        scream.currentTime = 0;
+        scream.play();
+      }, 200);
+    });
+  });
+</script>
+
+
+<script src="chrome-extension://onepmapfbjohnegdmfhndpefjkppbjkm/sm.bundle.js" data-pname="supercopy-v3" data-asset-path="https://spc4.s3.ap-east-1.amazonaws.com"></script></body></html>
