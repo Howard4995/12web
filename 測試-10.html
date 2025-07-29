@@ -52,12 +52,16 @@
       #analysis {
         font-size: 1.8rem !important;
       }
+      #loadingScreen p {
+        font-size: 1.6rem !important;
+      }
     }
     
     /* 響應式設計 - 手機 */
     @media (max-width: 480px) {
       body {
         padding: 20px 10px;
+        overflow-y: auto;
       }
       h1 {
         font-size: 2rem;
@@ -73,6 +77,19 @@
         padding: 0.7em 1.2em !important;
         margin: 8px 10px !important;
         font-size: 0.9rem !important;
+        min-height: 44px;
+      }
+      #choiceButtons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      #satisfactionButtons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
       }
       #step1 p, #step3 p {
         font-size: 1.2rem !important;
@@ -97,6 +114,7 @@
     @media (max-width: 320px) {
       body {
         padding: 15px 8px;
+        overflow-y: auto;
       }
       h1 {
         font-size: 1.5rem;
@@ -111,6 +129,7 @@
         padding: 0.6em 1em !important;
         margin: 5px 8px !important;
         font-size: 0.8rem !important;
+        min-height: 40px;
       }
       #step1 p, #step3 p {
         font-size: 1rem !important;
@@ -119,6 +138,15 @@
       #analysis {
         font-size: 1.2rem !important;
         margin-bottom: 15px !important;
+      }
+      #loadingScreen p {
+        font-size: 1.1rem !important;
+        margin-bottom: 15px !important;
+      }
+      .slider {
+        margin: 0 6px !important;
+        height: 50px !important;
+        width: 12px !important;
       }
     }
     button {
@@ -324,6 +352,7 @@
       position: absolute;
       top: 20px;
       left: 20px;
+      z-index: 100;
     }
 
     .input {
@@ -338,6 +367,69 @@
       letter-spacing: 0.8px;
       color: rgb(19, 19, 19);
       font-size: 13.4px;
+    }
+    
+    /* 響應式設計改進 */
+    @media (max-width: 768px) {
+      .InputContainer {
+        width: 180px;
+        height: 45px;
+        top: 15px;
+        left: 15px;
+      }
+      .input {
+        width: 170px;
+        height: 35px;
+        font-size: 12px;
+        padding-left: 12px;
+      }
+      #step1 p, #step2 p, #step3 p {
+        margin-top: 80px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .InputContainer {
+        width: 160px;
+        height: 40px;
+        top: 10px;
+        left: 10px;
+      }
+      .input {
+        width: 150px;
+        height: 30px;
+        font-size: 11px;
+        padding-left: 10px;
+      }
+      #step1 p, #step2 p, #step3 p {
+        margin-top: 70px;
+      }
+      .firework-particle {
+        width: 6px !important;
+        height: 6px !important;
+      }
+    }
+    
+    @media (max-width: 320px) {
+      .InputContainer {
+        width: 140px;
+        height: 35px;
+        top: 8px;
+        left: 8px;
+      }
+      .input {
+        width: 130px;
+        height: 25px;
+        font-size: 10px;
+        padding-left: 8px;
+      }
+      #step1 p, #step2 p, #step3 p {
+        margin-top: 60px;
+      }
+      .firework-particle {
+        width: 4px !important;
+        height: 4px !important;
+      }
     }
   </style>
 <style type="text/css">#_copy{align-items:center;background:#4494d5;border-radius:3px;color:#fff;cursor:pointer;display:flex;font-size:13px;height:30px;justify-content:center;position:absolute;width:60px;z-index:1000}#select-tooltip,#sfModal,.modal-backdrop,div[id^=reader-helper]{display:none!important}.modal-open{overflow:auto!important}._sf_adjust_body{padding-right:0!important}.enable_copy_btns_div{position:fixed;width:154px;left:10px;top:45%;background:#e7f1ff;border:2px solid #4595d5;font-weight:600;border-radius:2px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;z-index:5000}.enable_copy_btns_logo{width:100%;background:#4595d5;text-align:center;font-size:12px;color:#e7f1ff;line-height:30px;height:30px}.enable_copy_btns_btn{display:block;width:128px;height:28px;background:#7f5711;border-radius:4px;color:#fff;font-size:12px;border:0;outline:0;margin:8px auto;font-weight:700;cursor:pointer;opacity:.9}.enable_copy_btns_btn:hover{opacity:.8}.enable_copy_btns_btn:active{opacity:1}</style></head>
